@@ -36,6 +36,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Token> tokens = new ArrayList<>();
 
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WeddingEvent> weddings = new ArrayList<>();
+
     public User() {}
 
     public Integer getId() {
@@ -84,5 +87,13 @@ public class User {
 
     public void setTokens(List<Token> tokens) {
         this.tokens = tokens;
+    }
+
+    public List<WeddingEvent> getWeddings() {
+        return weddings;
+    }
+
+    public void setWeddings(List<WeddingEvent> weddings) {
+        this.weddings = weddings;
     }
 }
