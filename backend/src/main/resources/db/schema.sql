@@ -46,5 +46,5 @@ CREATE TABLE token (
     user_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (user_gid) REFERENCES app_user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
 );
