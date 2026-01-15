@@ -2,16 +2,26 @@ package it.eforhum.backend.dto;
 
 public class AuthResponse {
 
+    private Integer userId;
     private String token;
     private String username;
     private String role;
 
     public AuthResponse() {}
 
-    public AuthResponse(String token, String username, String role) {
+    public AuthResponse(Integer userId, String token, String username, String role) {
+        this.userId = userId;
         this.token = token;
         this.username = username;
         this.role = role;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getToken() {

@@ -52,7 +52,7 @@ public class AuthService {
 
         tokenRepository.save(token);
 
-        return new AuthResponse(tokenValue, user.getUsername(), user.getRole());
+        return new AuthResponse(user.getId(), tokenValue, user.getUsername(), user.getRole());
     }
 
     @Transactional
@@ -72,7 +72,7 @@ public class AuthService {
 
         tokenRepository.save(token);
 
-        return new AuthResponse(tokenValue, user.getUsername(), user.getRole());
+        return new AuthResponse(user.getId(), tokenValue, user.getUsername(), user.getRole());
     }
 
     public Optional<User> validateToken(String tokenValue) {
