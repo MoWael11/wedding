@@ -42,6 +42,10 @@ public class Image {
     @JoinColumn(name = "event_id", nullable = false)
     private WeddingEvent event;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uploader_id", nullable = false)
+    private User uploader;
+
     public Image() {}
 
     public Integer getId() {
@@ -106,5 +110,13 @@ public class Image {
 
     public void setEvent(WeddingEvent event) {
         this.event = event;
+    }
+
+    public User getUploader() {
+        return uploader;
+    }
+
+    public void setUploader(User uploader) {
+        this.uploader = uploader;
     }
 }
