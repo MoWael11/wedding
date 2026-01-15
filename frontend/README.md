@@ -1,59 +1,110 @@
-# Frontend
+# Wedding App - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+Angular application for the Wedding photo sharing platform.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- **Angular 21**
+- **TypeScript**
+- **Standalone Components**
+- **Signals** (reactive state management)
+- **Cookie-based Authentication**
+
+## Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+## Getting Started
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure Environment
+
+Edit `src/environments/environment.ts`:
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api'
+};
+```
+
+### 3. Start Development Server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The app will be available at `http://localhost:4200`
 
-## Code scaffolding
+## Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **User Authentication** - Sign up, sign in, sign out
+- **Wedding Gallery** - View all weddings on the home page
+- **Create Wedding** - Create a new wedding event
+- **Enter with Code** - Join a wedding using a secret code
+- **Upload Photos** - Share photos with wedding guests
+- **Owner Dashboard** - View secret code (owners only)
 
-```bash
-ng generate component component-name
+## Project Structure
+
+```
+src/app/
+├── components/          # Reusable UI components
+│   ├── create-wedding-modal/   # Create wedding form modal
+│   ├── enter-code-modal/       # Enter code form modal
+│   └── index.ts                # Component exports
+├── guards/              # Route guards
+│   └── auth.guard.ts    # Protects authenticated routes
+├── interceptors/        # HTTP interceptors
+│   └── auth.interceptor.ts  # Adds credentials to requests
+├── models/              # TypeScript interfaces
+│   ├── auth.model.ts    # Auth DTOs
+│   └── wedding.model.ts # Wedding DTOs
+├── pages/               # Page components (views)
+│   ├── auth/
+│   │   ├── sign-in/     # Login page
+│   │   └── sign-up/     # Registration page
+│   ├── home/            # Wedding gallery
+│   ├── wedding-detail/  # Wedding info & photos
+│   └── wedding-upload/  # Photo upload page
+├── services/            # API services
+│   ├── auth.service.ts  # Authentication
+│   └── wedding.service.ts # Wedding operations
+├── app.config.ts        # App configuration
+└── app.routes.ts        # Routing
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Authentication Flow
+
+1. User signs in → receives token
+2. Token stored in cookies (7 days)
+3. `AuthInterceptor` adds `withCredentials: true` to all requests
+4. `AuthGuard` protects routes requiring authentication
+
+## Development Commands
 
 ```bash
-ng generate --help
-```
+# Start dev server
+ng serve
 
-## Building
-
-To build the project run:
-
-```bash
+# Build for production
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+# Run tests
 ng test
+
+# Lint code
+ng lint
 ```
 
-## Running end-to-end tests
+## Environment Variables
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Variable | Description |
+|----------|-------------|
+| `apiUrl` | Backend API URL |

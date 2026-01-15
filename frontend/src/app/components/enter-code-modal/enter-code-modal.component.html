@@ -1,0 +1,34 @@
+@if (isOpen) {
+  <div class="modal-overlay" (click)="onOverlayClick()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Enter Wedding Code</h2>
+        <button class="close-btn" (click)="onClose()">×</button>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="modal-form">
+        @if (error()) {
+          <div class="form-error">{{ error() }}</div>
+        }
+
+        <div class="form-group">
+          <label>Wedding Code</label>
+          <input
+            type="text"
+            [(ngModel)]="code"
+            name="code"
+            placeholder="Enter the secret code"
+            class="code-input"
+          />
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" (click)="onClose()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="loading()">
+            {{ loading() ? 'Checking...' : 'Enter' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

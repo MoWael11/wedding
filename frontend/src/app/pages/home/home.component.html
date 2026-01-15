@@ -1,0 +1,52 @@
+<div class="home-container">
+  <header class="header">
+    <h1>Wedding App</h1>
+    <div class="header-actions">
+      <span class="username">{{ authService.username() }}</span>
+      <button class="sign-out-btn" (click)="onSignOut()">Sign Out</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="action-bar">
+      <button class="btn btn-primary" (click)="openCreateModal()">Create Wedding</button>
+      <button class="btn btn-secondary" (click)="openCodeModal()">Enter with Code</button>
+    </div>
+
+    @if (loading()) {
+      <div class="loading">Loading weddings...</div>
+    } @else if (error()) {
+      <div class="error-message">{{ error() }}</div>
+    } @else if (weddings().length === 0) {
+      <div class="empty-state">
+        <p>No weddings yet. Create your first wedding!</p>
+      </div>
+    } @else {
+      <div class="wedding-grid">
+        @for (wedding of weddings(); track wedding.id) {
+          <a [routerLink]="['/weddings', wedding.id]" class="wedding-card">
+            <div class="wedding-icon">💒</div>
+            <h3 class="wedding-title">{{ wedding.title }}</h3>
+            <p class="wedding-couple">
+              {{ wedding.persons[0]?.firstName }} & {{ wedding.persons[1]?.firstName }}
+            </p>
+            @if (wedding.eventDate) {
+              <p class="wedding-date">{{ wedding.eventDate }}</p>
+            }
+          </a>
+        }
+      </div>
+    }
+  </main>
+</div>
+
+<app-create-wedding-modal
+  [isOpen]="showCreateModal()"
+  (close)="closeCreateModal()"
+  (created)="onWeddingCreated()"
+/>
+
+<app-enter-code-modal
+  [isOpen]="showCodeModal()"
+  (close)="closeCodeModal()"
+/>
