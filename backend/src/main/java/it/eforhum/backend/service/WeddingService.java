@@ -96,6 +96,7 @@ public class WeddingService {
                 wedding.getCode(),
                 wedding.getTitle(),
                 wedding.getEventDate(),
+                wedding.getOwner().getId(),
                 persons
         );
     }

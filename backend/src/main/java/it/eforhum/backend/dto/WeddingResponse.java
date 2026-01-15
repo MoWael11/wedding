@@ -9,15 +9,17 @@ public class WeddingResponse {
     private String code;
     private String title;
     private LocalDate eventDate;
+    private Integer ownerId;
     private List<PersonDTO> persons;
 
     public WeddingResponse() {}
 
-    public WeddingResponse(Integer id, String code, String title, LocalDate eventDate, List<PersonDTO> persons) {
+    public WeddingResponse(Integer id, String code, String title, LocalDate eventDate, Integer ownerId, List<PersonDTO> persons) {
         this.id = id;
         this.code = code;
         this.title = title;
         this.eventDate = eventDate;
+        this.ownerId = ownerId;
         this.persons = persons;
     }
 
@@ -51,6 +53,14 @@ public class WeddingResponse {
 
     public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 
     public List<PersonDTO> getPersons() {
