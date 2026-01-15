@@ -31,7 +31,6 @@ public class ImageController {
             @PathVariable Integer weddingId,
             @RequestParam("file") MultipartFile file,
             @RequestAttribute("currentUser") User currentUser) {
-                System.out.println("=========================================");
         ImageResponse response = imageService.uploadImage(weddingId, file, currentUser);
         return ResponseEntity.ok(response);
     }
