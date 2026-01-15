@@ -29,6 +29,7 @@ CREATE TABLE person (
 CREATE TABLE image (
     id INT AUTO_INCREMENT PRIMARY KEY,
     event_id INT NOT NULL,
+    uploader_id INT NOT NULL,
 
     original_filename VARCHAR(255) NOT NULL,
     stored_filename VARCHAR(255) NOT NULL,
@@ -39,7 +40,8 @@ CREATE TABLE image (
 
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (event_id) REFERENCES wedding_event(id) ON DELETE CASCADE
+    FOREIGN KEY (event_id) REFERENCES wedding_event(id) ON DELETE CASCADE,
+    FOREIGN KEY (uploader_id) REFERENCES app_user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE token (
