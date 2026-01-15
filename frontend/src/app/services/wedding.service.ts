@@ -37,4 +37,8 @@ export class WeddingService {
     formData.append('file', file);
     return this.http.post<Image>(`${this.API_URL}/${weddingId}/images`, formData);
   }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`);
+  }
 }

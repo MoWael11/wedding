@@ -33,9 +33,16 @@
           <p class="wedding-date">{{ wedding()?.eventDate }}</p>
         }
 
-        <a [routerLink]="['/weddings', wedding()?.id, 'upload']" class="btn btn-primary upload-btn">
-          Upload Photos
-        </a>
+        @if (isOwner()) {
+          <div class="owner-actions">
+            <a [routerLink]="['/weddings', wedding()?.id, 'upload']" class="btn btn-primary">
+              Upload Photos
+            </a>
+            <button class="btn btn-danger" (click)="deleteWedding()" [disabled]="deleting()">
+              {{ deleting() ? 'Deleting...' : 'Delete Wedding' }}
+            </button>
+          </div>
+        }
       </div>
 
       <div class="gallery-section">

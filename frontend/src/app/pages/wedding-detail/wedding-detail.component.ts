@@ -17,6 +17,7 @@ export class WeddingDetailComponent implements OnInit {
   images = signal<Image[]>([]);
   loading = signal(true);
   error = signal<string | null>(null);
+  deleting = signal(false);
 
   // check if current user is owner
   isOwner = computed(() => {
@@ -69,5 +70,25 @@ export class WeddingDetailComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/']);
+  }
+
+  deleteWedding(): void {
+    const w = this.wedding();
+    if (!w) return;
+
+    if (!confirm(`Are you sure you want to delete "${w.title}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    this.deleting.set(true);
+    this.weddingService.delete(w.id).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.deleting.set(false);
+        this.error.set('Failed to delete wedding');
+      },
+    });
   }
 }
