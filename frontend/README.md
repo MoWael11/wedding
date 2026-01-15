@@ -55,6 +55,10 @@ The app will be available at `http://localhost:4200`
 
 ```
 src/app/
+├── components/          # Reusable UI components
+│   ├── create-wedding-modal/   # Create wedding form modal
+│   ├── enter-code-modal/       # Enter code form modal
+│   └── index.ts                # Component exports
 ├── guards/              # Route guards
 │   └── auth.guard.ts    # Protects authenticated routes
 ├── interceptors/        # HTTP interceptors
@@ -62,7 +66,7 @@ src/app/
 ├── models/              # TypeScript interfaces
 │   ├── auth.model.ts    # Auth DTOs
 │   └── wedding.model.ts # Wedding DTOs
-├── pages/               # Page components
+├── pages/               # Page components (views)
 │   ├── auth/
 │   │   ├── sign-in/     # Login page
 │   │   └── sign-up/     # Registration page

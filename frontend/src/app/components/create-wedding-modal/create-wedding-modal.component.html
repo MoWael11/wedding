@@ -1,0 +1,66 @@
+@if (isOpen) {
+  <div class="modal-overlay" (click)="onOverlayClick()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Create Wedding</h2>
+        <button class="close-btn" (click)="onClose()">×</button>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="modal-form">
+        @if (error()) {
+          <div class="form-error">{{ error() }}</div>
+        }
+
+        <div class="form-group">
+          <label>Wedding Title *</label>
+          <input
+            type="text"
+            [(ngModel)]="form.title"
+            name="title"
+            placeholder="e.g., Smith & Johnson"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Event Date</label>
+          <input type="date" [(ngModel)]="form.eventDate" name="eventDate" />
+        </div>
+
+        <div class="form-section">
+          <h4>Person 1</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" [(ngModel)]="form.person1FirstName" name="person1FirstName" />
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" [(ngModel)]="form.person1LastName" name="person1LastName" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h4>Person 2</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" [(ngModel)]="form.person2FirstName" name="person2FirstName" />
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" [(ngModel)]="form.person2LastName" name="person2LastName" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" (click)="onClose()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="loading()">
+            {{ loading() ? 'Creating...' : 'Create' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
