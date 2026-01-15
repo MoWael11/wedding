@@ -1,0 +1,189 @@
+.wedding-detail-container {
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #667eea;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.wedding-code {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.code-label {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.code-value {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0369a1;
+  letter-spacing: 0.05em;
+}
+
+.username {
+  color: #6b7280;
+}
+
+.loading,
+.error-container {
+  text-align: center;
+  padding: 3rem;
+}
+
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.main-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wedding-info {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.wedding-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.wedding-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.wedding-couple {
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin: 0 0 0.25rem 0;
+}
+
+.wedding-date {
+  color: #9ca3af;
+  margin: 0 0 1.5rem 0;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.upload-btn {
+  margin-top: 1rem;
+}
+
+.gallery-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+}
+
+.empty-gallery {
+  text-align: center;
+  padding: 3rem;
+  color: #9ca3af;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.image-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.image-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-info {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.uploaded-by {
+  color: #6b7280;
+  font-size: 0.875rem;
+}

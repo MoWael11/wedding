@@ -1,0 +1,67 @@
+<div class="upload-container">
+  @if (loading()) {
+    <div class="loading-state">Loading...</div>
+  } @else if (error() && !wedding()) {
+    <div class="error-state">
+      <div class="error-message">{{ error() }}</div>
+      <button class="btn btn-secondary" (click)="goToWedding()">Go Back</button>
+    </div>
+  } @else if (wedding()) {
+    <div class="upload-card">
+      <div class="card-header">
+        <h1>Upload Photo</h1>
+        <p class="subtitle">Share a moment from {{ wedding()?.title }}</p>
+      </div>
+
+      @if (success()) {
+        <div class="success-message">
+          {{ success() }}
+          <p>Redirecting to wedding gallery...</p>
+        </div>
+      } @else {
+        <div class="upload-area">
+          @if (!previewUrl()) {
+            <label class="file-input-label">
+              <input
+                type="file"
+                accept="image/jpeg,image/png"
+                (change)="onFileSelected($event)"
+                class="file-input"
+              />
+              <div class="dropzone">
+                <div class="dropzone-icon">📸</div>
+                <p class="dropzone-text">Click to select a photo</p>
+                <p class="dropzone-hint">JPG or PNG, max 5MB</p>
+              </div>
+            </label>
+          } @else {
+            <div class="preview-container">
+              <img [src]="previewUrl()" alt="Preview" class="preview-image" />
+              <button class="clear-btn" (click)="clearFile()">✕</button>
+            </div>
+            <p class="file-name">{{ selectedFile()?.name }}</p>
+          }
+        </div>
+
+        @if (error()) {
+          <div class="error-inline">{{ error() }}</div>
+        }
+
+        <div class="actions">
+          <button class="btn btn-secondary" (click)="goToWedding()">Cancel</button>
+          <button
+            class="btn btn-primary"
+            [disabled]="!selectedFile() || uploading()"
+            (click)="uploadImage()"
+          >
+            @if (uploading()) {
+              Uploading...
+            } @else {
+              Upload Photo
+            }
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>

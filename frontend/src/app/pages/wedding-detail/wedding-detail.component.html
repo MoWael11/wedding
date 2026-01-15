@@ -1,0 +1,62 @@
+<div class="wedding-detail-container">
+  <header class="header">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+    <div class="header-right">
+      @if (isOwner() && wedding()?.code) {
+        <div class="wedding-code">
+          <span class="code-label">Code:</span>
+          <span class="code-value">{{ wedding()?.code }}</span>
+        </div>
+      }
+      <span class="username">{{ authService.username() }}</span>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="loading">Loading wedding...</div>
+  } @else if (error()) {
+    <div class="error-container">
+      <div class="error-message">{{ error() }}</div>
+      <button class="btn btn-primary" (click)="goBack()">Go Home</button>
+    </div>
+  } @else if (wedding()) {
+    <main class="main-content">
+      <div class="wedding-info">
+        <div class="wedding-icon">💒</div>
+        <h1 class="wedding-title">{{ wedding()?.title }}</h1>
+        <p class="wedding-couple">
+          {{ wedding()?.persons?.[0]?.firstName }} {{ wedding()?.persons?.[0]?.lastName }}
+          &
+          {{ wedding()?.persons?.[1]?.firstName }} {{ wedding()?.persons?.[1]?.lastName }}
+        </p>
+        @if (wedding()?.eventDate) {
+          <p class="wedding-date">{{ wedding()?.eventDate }}</p>
+        }
+
+        <a [routerLink]="['/weddings', wedding()?.id, 'upload']" class="btn btn-primary upload-btn">
+          Upload Photos
+        </a>
+      </div>
+
+      <div class="gallery-section">
+        <h2>Photo Gallery</h2>
+        @if (images().length === 0) {
+          <div class="empty-gallery">
+            <p>No photos yet. Be the first to upload!</p>
+          </div>
+        } @else {
+          <div class="image-grid">
+            @for (image of images(); track image.id) {
+              <div class="image-card">
+                <img [src]="image.url" [alt]="image.originalFilename" />
+                <div class="image-info">
+                  <span class="uploaded-by">by {{ image.uploadedBy }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </main>
+  }
+</div>
